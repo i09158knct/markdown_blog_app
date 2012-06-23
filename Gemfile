@@ -6,6 +6,7 @@ gem 'rails', '3.2.6'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'sqlite3-ruby'
 
 gem 'redcarpet'
 gem 'albino'
@@ -15,6 +16,7 @@ gem 'bcrypt-ruby', require: "bcrypt"
 gem 'mocha'
 
 group :production do
+  gem 'therubyracer-heroku'
   gem "pg"
 end
 
