@@ -1,0 +1,44 @@
+<%- model_class = @post.class -%>
+<p>
+<%= @post.created_at %>
+<%= link_to "Raw", post_path(@post) + "/raw" %>
+</p>
+<p><
+前: <%= link_to @prev_title, post_path(@prev_id) if @prev_id %> |
+<%= link_to "記事一覧", posts_path %> |
+次: <%= link_to @next_title, post_path(@next_id) if @next_id %>
+></p>
+
+<div class="page-header">
+  <h1><%=t '.title', :default => @post.title %></h1>
+</div>
+<div class="body">
+<% if @enabled_article_js %>
+  <%== markdown(@post.body) %>
+<% else %>
+  <%= sanitize markdown(@post.body) %>
+<% end %>
+</div>
+
+<p>
+<%= @post.created_at %>
+<%= link_to "Raw", post_path(@post) + "/raw" %>
+</p>
+<p><
+前: <%= link_to @prev_title, post_path(@prev_id) if @prev_id %> |
+<%= link_to "記事一覧", posts_path %> |
+次: <%= link_to @next_title, post_path(@next_id) if @next_id %>
+></p>
+
+
+
+
+<div class="form-actions">
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_post_path(@post), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              post_path(@post),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+</div>
