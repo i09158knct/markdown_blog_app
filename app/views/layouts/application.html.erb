@@ -19,7 +19,7 @@
     <link href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
   </head>
   <body>
-
+<% cache suffix: :topbar do %>
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -39,6 +39,7 @@
         </div>
       </div>
     </div>
+<% end %>
 
     <div class="container-fluid">
       <div class="content">
@@ -49,6 +50,7 @@
 	     <% end %>
 	     <%= yield %>
             </div>
+<% cache suffix: :menu do %>
             <div class="span3">
               <div class="well sidebar-nav">
                 <h3>メニュー</h3>
@@ -64,6 +66,7 @@
                 </ul>
               </div><!--/.well -->
             </div><!--/span-->
+<% end %>
         </div><!--/row-->
       </div><!--/content-->
 

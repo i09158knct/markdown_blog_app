@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 class PostsController < ApplicationController
   before_filter :login_required, only: [:edit, :destroy, :update, :new, :create]
+  
+  caches_action :index, :raw, :show
+  
   # GET /posts
   # GET /posts.json
   def index
@@ -56,6 +59,7 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
     @post = Post.find(params[:id])
+    delete_caches
   end
 
   # POST /posts
@@ -72,6 +76,7 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+    delete_caches
   end
 
   # PUT /posts/1
@@ -88,6 +93,7 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+    delete_caches
   end
 
   # DELETE /posts/1
@@ -95,14 +101,15 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-
     respond_to do |format|
       format.html { redirect_to posts_url }
       format.json { head :no_content }
     end
+    delete_caches
   end
 
   def toggle_js
+    # TODO: cache機能に合うように
     e = ""
     if cookies[:enabled_article_js]
       cookies.delete :enabled_article_js
@@ -118,4 +125,11 @@ class PostsController < ApplicationController
     redirect_to :back
   end
   
+  def delete_caches()
+    expire_action action: :index
+    expire_action action: :raw
+    expire_action action: :show
+    expire_action controller: :welcome ,action: :index
+  end
+
 end
