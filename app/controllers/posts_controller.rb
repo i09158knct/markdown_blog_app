@@ -110,8 +110,12 @@ class PostsController < ApplicationController
   
   def delete_caches()
     expire_action action: :index
-    expire_action action: :raw
-    expire_action action: :show
+    begin
+      expire_action action: :raw 
+      expire_action action: :show
+    rescue
+      #TODO: createのときはraw, showのキャッシュはまだ存在していない 
+    end
     expire_action controller: :welcome ,action: :index
   end
 
