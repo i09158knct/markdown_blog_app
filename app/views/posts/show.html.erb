@@ -13,11 +13,7 @@
   <h1><%=t '.title', :default => @post.title %></h1>
 </div>
 <div class="body">
-<% if @enabled_article_js %>
   <%== markdown(@post.body) %>
-<% else %>
-  <%= sanitize markdown(@post.body) %>
-<% end %>
 </div>
 
 <p>

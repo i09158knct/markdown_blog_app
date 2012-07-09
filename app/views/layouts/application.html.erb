@@ -58,11 +58,8 @@
 		  <li><%= link_to "ホーム", "/"  %></li>
 		  <li><%= link_to '記事一覧', posts_path %></li>
                 </ul>
-                <h3>設定</h3>
+                <h3></h3>
 		<ul class="nav nav-list">
-         	  <li><%= e = cookies[:enabled_article_js] ? "無効" : "有効"
-			  link_to "記事中のJavaScriptを#{e}にする", posts_path + "/toggle_js"
-			  %></li>
                 </ul>
               </div><!--/.well -->
             </div><!--/span-->

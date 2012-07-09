@@ -12,7 +12,6 @@ Burogu::Application.routes.draw do
   resources :users
 
   get "welcome/index"
-  match 'posts/toggle_js'=> 'posts#toggle_js'
   resources :posts do
   end
   match 'posts/:id/raw'=> 'posts#raw'

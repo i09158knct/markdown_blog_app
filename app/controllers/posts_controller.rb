@@ -107,23 +107,6 @@ class PostsController < ApplicationController
     end
     delete_caches
   end
-
-  def toggle_js
-    # TODO: cache機能に合うように
-    e = ""
-    if cookies[:enabled_article_js]
-      cookies.delete :enabled_article_js
-      e = "無効"
-    else
-      cookies[:enabled_article_js] = {
-        value: "true",
-        expires: 120.days.from_now,
-      }
-      e = "有効"
-    end
-    flash[:notice] = "記事中のJavaScriptを#{e}にしました"
-    redirect_to :back
-  end
   
   def delete_caches()
     expire_action action: :index

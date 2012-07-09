@@ -3,11 +3,7 @@
   <h1><%= link_to post.title, post %></h1>
   <p><%= post.created_at %></p>
   <div class="body">
-    <% if cookies[:enabled_article_js] %>
     <%== markdown(post.body)  %>
-    <% else %>
-    <%= sanitize markdown(post.body)  %>
-    <% end %>
   </div>
 </div>
 <% end %>
